@@ -1,0 +1,10 @@
+0. Drop existing tables: 
+#psql -h localhost -U postgres -f 000_drop_all_tables.sql carrier
+1. Init the DB by running next script as superuser:
+#psql -h localhost -U postgres -f postgres_init.ddl
+IMPORTANT: change DB name, user name or password if necessary.
+
+2. Fix credentials in env.config if necessary.
+
+3. To populate the DB:
+#mvn install

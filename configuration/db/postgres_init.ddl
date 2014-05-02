@@ -1,0 +1,3 @@
+CREATE DATABASE carrier WITH ENCODING 'UTF-8';
+CREATE USER dbwriter WITH PASSWORD '123456';
+grant ALL ON DATABASE carrier to dbwriter;
