@@ -8,10 +8,18 @@
         <version>1.0-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
+    <packaging>war</packaging>
 
     <artifactId>carrier-webapp</artifactId>
     <groupId>ru.carrier</groupId>
     <version>1.0-SNAPSHOT</version>
+
+    <repositories>
+        <repository>
+        <id>vaadin-addons</id>
+        <url>http://maven.vaadin.com/vaadin-addons</url>
+        </repository>
+    </repositories>
 
     <properties>
         <tomcat.version>7.0.50</tomcat.version>
@@ -104,6 +112,14 @@
             <groupId>org.springframework</groupId>
             <artifactId>spring-beans</artifactId>
         </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-aspects</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+        </dependency>
     </dependencies>
 
     <build>
@@ -123,19 +139,19 @@
                     <!--<include>ReportTemplates/*.xls</include>-->
                 </includes>
             </resource>
-            <!--<resource>-->
-                <!--<filtering>false</filtering>-->
-                <!--<directory>src/main/resources</directory>-->
-                <!--<includes>-->
-                    <!--<include>templates/**/*</include>-->
-                    <!--&lt;!&ndash;<include>ReportTemplates/*.xls</include>&ndash;&gt;-->
-                <!--</includes>-->
-            <!--</resource>-->
+
         </resources>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-war-plugin</artifactId>
+                <configuration>
+                    <failOnMissingWebXml>false</failOnMissingWebXml>
+                </configuration>
             </plugin>
             <plugin>
                 <groupId>com.vaadin</groupId>
@@ -146,7 +162,7 @@
                             <!--<modules>-->
                             <!--<module>com.perspective.vd.MyAppWidgetSet</module>-->
                             <!--</modules>-->
-                            <webappDirectory>${basedir}/src/main/web/VAADIN/widgetsets
+                            <webappDirectory>${basedir}/src/main/webapp/VAADIN/widgetsets
                             </webappDirectory>
                             <!--<hostedWebapp>${basedir}/resources/VAADIN/widgetsets</hostedWebapp>
                             <noServer>true</noServer>-->

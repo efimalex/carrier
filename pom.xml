@@ -13,52 +13,58 @@
         <module>carrier-webapp</module>
     </modules>
 
-    <repositories>
-        <repository>
-            <id>repository.jboss.org</id>
-            <url>http://repository.jboss.org/nexus/content/groups/public</url>
-            <releases>
-                <enabled>false</enabled>
-            </releases>
-        </repository>
-        <repository>
-            <id>com.springsource.repository.bundles.release</id>
-            <name>SpringSource Enterprise Bundle Repository - SpringSource Releases</name>
-            <url>http://repository.springsource.com/maven/bundles/release</url>
-        </repository>
-        <repository>
-            <id>com.springsource.repository.bundles.external</id>
-            <name>SpringSource Enterprise Bundle Repository - External Releases</name>
-            <url>http://repository.springsource.com/maven/bundles/external</url>
-        </repository>
-        <repository>
-            <id>com.springsource.repository.bundles.snapshot</id>
-            <name>SpringSource Enterprise Bundle Repository - Snapshot Releases</name>
-            <url>http://repository.springsource.com/maven/bundles/snapshot</url>
-        </repository>
+    <!--<repositories>-->
+    <!--<repository>-->
+    <!--<id>public repo</id>-->
+    <!--<url>https://repository.apache.org</url>-->
+    <!--</repository>-->
+    <!--<repository>-->
 
-        <!--<repository>-->
-        <!--<id>vaadin-releases</id>-->
-        <!--<url>http://oss.sonatype.org/content/repositories/vaadin-releases/</url>-->
-        <!--<releases>-->
-        <!--<enabled>true</enabled>-->
-        <!--</releases>-->
-        <!--<snapshots>-->
-        <!--<enabled>false</enabled>-->
-        <!--</snapshots>-->
-        <!--</repository>-->
 
-        <repository>
-            <id>vaadin-addons</id>
-            <url>http://maven.vaadin.com/vaadin-addons</url>
-        </repository>
-    </repositories>
+    <!--<id>repository.jboss.org</id>-->
+    <!--<url>http://repository.jboss.org/nexus/content/groups/public</url>-->
+    <!--<releases>-->
+    <!--<enabled>true</enabled>-->
+    <!--</releases>-->
+    <!--</repository>-->
+    <!--<repository>-->
+    <!--<id>com.springsource.repository.bundles.release</id>-->
+    <!--<name>SpringSource Enterprise Bundle Repository - SpringSource Releases</name>-->
+    <!--<url>http://repository.springsource.com/maven/bundles/release</url>-->
+    <!--</repository>-->
+    <!--<repository>-->
+    <!--<id>com.springsource.repository.bundles.external</id>-->
+    <!--<name>SpringSource Enterprise Bundle Repository - External Releases</name>-->
+    <!--<url>http://repository.springsource.com/maven/bundles/external</url>-->
+    <!--</repository>-->
+    <!--<repository>-->
+    <!--<id>com.springsource.repository.bundles.snapshot</id>-->
+    <!--<name>SpringSource Enterprise Bundle Repository - Snapshot Releases</name>-->
+    <!--<url>http://repository.springsource.com/maven/bundles/snapshot</url>-->
+    <!--</repository>-->
+
+    <!--&lt;!&ndash;<repository>&ndash;&gt;-->
+    <!--&lt;!&ndash;<id>vaadin-releases</id>&ndash;&gt;-->
+    <!--&lt;!&ndash;<url>http://oss.sonatype.org/content/repositories/vaadin-releases/</url>&ndash;&gt;-->
+    <!--&lt;!&ndash;<releases>&ndash;&gt;-->
+    <!--&lt;!&ndash;<enabled>true</enabled>&ndash;&gt;-->
+    <!--&lt;!&ndash;</releases>&ndash;&gt;-->
+    <!--&lt;!&ndash;<snapshots>&ndash;&gt;-->
+    <!--&lt;!&ndash;<enabled>false</enabled>&ndash;&gt;-->
+    <!--&lt;!&ndash;</snapshots>&ndash;&gt;-->
+    <!--&lt;!&ndash;</repository>&ndash;&gt;-->
+
+    <!--<repository>-->
+    <!--<id>vaadin-addons</id>-->
+    <!--<url>http://maven.vaadin.com/vaadin-addons</url>-->
+    <!--</repository>-->
+    <!--</repositories>-->
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <spring.version>4.0.3.RELEASE</spring.version>
+        <spring.version>4.0.4.RELEASE</spring.version>
         <vaadin.version>7.1.13</vaadin.version>
-        <hibernate.version>4.2.6.Final</hibernate.version>
+        <hibernate.version>4.3.5.Final</hibernate.version>
         <tomcat.version>7.0.50</tomcat.version>
         <springframework.security.version>3.2.3.RELEASE</springframework.security.version>
     </properties>
@@ -163,8 +169,8 @@
             </dependency>
             <dependency>
                 <groupId>org.hibernate.javax.persistence</groupId>
-                <artifactId>hibernate-jpa-2.0-api</artifactId>
-                <version>1.0.1.Final</version>
+                <artifactId>hibernate-jpa-2.1-api</artifactId>
+                <version>1.0.0.Final</version>
             </dependency>
             <dependency>
                 <groupId>org.hibernate</groupId>
@@ -177,6 +183,16 @@
                 <groupId>org.apache.velocity</groupId>
                 <artifactId>velocity-tools</artifactId>
                 <version>2.0</version>
+            </dependency>
+            <dependency>
+                <groupId>org.jadira.usertype</groupId>
+                <artifactId>usertype.core</artifactId>
+                <version>3.2.0.GA</version>
+            </dependency>
+            <dependency>
+                <groupId>org.jadira.usertype</groupId>
+                <artifactId>usertype.extended</artifactId>
+                <version>3.2.0.GA</version>
             </dependency>
 
             <!--Spring-->
@@ -231,10 +247,15 @@
                 <version>${spring.version}</version>
                 <scope>test</scope>
             </dependency>
+            <!--<dependency>-->
+                <!--<groupId>org.springframework</groupId>-->
+                <!--<artifactId>spring-jpa</artifactId>-->
+                <!--<version>2.0.8</version>-->
+            <!--</dependency>-->
             <dependency>
                 <groupId>org.springframework</groupId>
-                <artifactId>spring-jpa</artifactId>
-                <version>2.0.8</version>
+                <artifactId>spring-aspects</artifactId>
+                <version>${spring.version}</version>
             </dependency>
             <!--vaadin-->
             <dependency>
@@ -275,6 +296,18 @@
                 <scope>test</scope>
             </dependency>
 
+            <dependency>
+                <groupId>dom4j</groupId>
+                <artifactId>dom4j</artifactId>
+                <version>1.6.1</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.slf4j</groupId>
+                <artifactId>slf4j-api</artifactId>
+                <version>1.7.7</version>
+            </dependency>
+
         </dependencies>
     </dependencyManagement>
 
@@ -309,6 +342,12 @@
                     <version>2.4</version>
                 </plugin>
                 <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-war-plugin</artifactId>
+                    <version>2.4</version>
+                </plugin>
+
+                <plugin>
                     <groupId>com.vaadin</groupId>
                     <artifactId>vaadin-maven-plugin</artifactId>
                     <version>${vaadin.version}</version>
@@ -317,7 +356,7 @@
                 <plugin>
                     <groupId>org.apache.tomcat.maven</groupId>
                     <artifactId>tomcat7-maven-plugin</artifactId>
-                    <version>2.3-SNAPSHOT</version>
+                    <version>2.2</version>
                     <dependencies>
                         <dependency>
                             <groupId>org.apache.tomcat.embed</groupId>

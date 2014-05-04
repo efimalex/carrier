@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence xmlns="http://xmlns.jcp.org/xml/ns/persistence" version="2.1">
+
+    <persistence-unit name="carrier">
+        <class>ru.carrier.entity.Bus</class>
+        <class>ru.carrier.entity.BusRoute</class>
+        <class>ru.carrier.entity.BusStation</class>
+        <class>ru.carrier.entity.BusStationPriceHistory</class>
+        <class>ru.carrier.entity.Carrier</class>
+        <class>ru.carrier.entity.Timetable</class>
+    </persistence-unit>
+</persistence>

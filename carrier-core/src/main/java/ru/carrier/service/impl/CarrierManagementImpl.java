@@ -2,6 +2,7 @@ package ru.carrier.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ru.carrier.dao.CarrierDao;
@@ -18,7 +19,7 @@ import java.util.List;
 /**
  * Created by User on 14.04.2014.
  */
-@Service
+@Service("carrierManagement")
 public class CarrierManagementImpl implements CarrierManagement {
 
     @Autowired

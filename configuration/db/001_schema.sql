@@ -33,7 +33,7 @@ CREATE TABLE bus
 (
   id bigint NOT NULL,
   state_number CHARACTER VARYING(10) NOT NULL,
-  seats SMALLINT NOT NULL,
+  seats INT NOT NULL,
   bus_model CHARACTER VARYING(64) NOT NULL,
   carrier_man_id BIGINT NOT NULL,
   CONSTRAINT bus_pkey PRIMARY KEY (id),
@@ -47,22 +47,10 @@ WITH (
 ALTER TABLE bus
   OWNER TO dbwriter;
 
-CREATE TABLE bus_station
-(
-  id bigint NOT NULL,
-  station_name int NOT NULL,
-  CONSTRAINT bus_station_pkey PRIMARY KEY (id)
-)
-WITH (
-  OIDS=FALSE
-);
-ALTER TABLE bus_station
-  OWNER TO dbwriter;
-
 CREATE TABLE bus_route
 (
   id bigint NOT NULL,
-  route_number int NOT NULL,
+  route_number CHARACTER VARYING(64) NOT NULL,
   bus_id bigint not null,
   carrier_man_id bigint not null,
   dispatch_station_id bigint not null,
@@ -70,12 +58,6 @@ CREATE TABLE bus_route
   CONSTRAINT bus_route_pkey PRIMARY KEY (id),
   CONSTRAINT bus_id_fk FOREIGN KEY (bus_id)
       REFERENCES bus (id) MATCH SIMPLE
-      ON UPDATE NO ACTION ON DELETE NO ACTION,
-  CONSTRAINT dispatch_station_id_fk FOREIGN KEY (dispatch_station_id)
-      REFERENCES bus_station (id) MATCH SIMPLE
-      ON UPDATE NO ACTION ON DELETE NO ACTION,
-  CONSTRAINT destination_station_id_fk FOREIGN KEY (destination_station_id)
-      REFERENCES bus_station (id) MATCH SIMPLE
       ON UPDATE NO ACTION ON DELETE NO ACTION,
   CONSTRAINT carrier_man_id_fk FOREIGN KEY (carrier_man_id)
       REFERENCES carrier_man (id) MATCH SIMPLE
@@ -86,6 +68,24 @@ WITH (
 );
 ALTER TABLE bus_route
   OWNER TO dbwriter;
+
+
+CREATE TABLE bus_station
+(
+  id bigint NOT NULL,
+  station_name CHARACTER VARYING(128) NOT NULL,
+  bus_route_id bigint not null,
+  CONSTRAINT bus_station_pkey PRIMARY KEY (id)
+)
+WITH (
+  OIDS=FALSE
+);
+ALTER TABLE bus_station
+  OWNER TO dbwriter;
+
+ALTER TABLE bus_route ADD CONSTRAINT destination_station_id_fk FOREIGN KEY (destination_station_id) REFERENCES bus_station (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION;
+ALTER TABLE bus_route ADD CONSTRAINT dispatch_station_id_fk FOREIGN KEY (dispatch_station_id) REFERENCES bus_station (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION;
+ALTER TABLE bus_station ADD CONSTRAINT bus_route_id_fk FOREIGN KEY (bus_route_id) REFERENCES bus_route (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION;
 
 CREATE TABLE timetable
 (
@@ -109,8 +109,8 @@ ALTER TABLE timetable
 CREATE TABLE station_price_history
 (
   id bigint NOT NULL,
-  start_period date NOT NULL,
-  end_period date NOT NULL,
+  start_period timestamp NOT NULL,
+  end_period timestamp NOT NULL,
   forward_price NUMERIC(13,2) NOT NULL,
   opposite_price NUMERIC(13,2) NOT NULL,
   bus_station_id bigint not null,
