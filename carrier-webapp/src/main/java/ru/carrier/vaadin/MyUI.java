@@ -1,19 +1,15 @@
 package ru.carrier.vaadin;
 
+import com.vaadin.annotations.Theme;
 import com.vaadin.annotations.Title;
 import com.vaadin.server.VaadinRequest;
 import com.vaadin.ui.*;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Configurable;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
-import ru.carrier.entity.Carrier;
-import ru.carrier.service.CarrierManagement;
-import ru.carrier.vaadin.view.CarrierPlace;
+import ru.carrier.vaadin.view.carrierside.CarrierPlace;
 import ru.xpoft.vaadin.DiscoveryNavigator;
-
-import java.util.List;
 
 /**
  * Created by User on 21.04.2014.
@@ -21,7 +17,7 @@ import java.util.List;
 
 @Component
 @Scope("prototype")
-//@Theme("reindeer")
+@Theme("dashboard")
 //@Theme("dashboard")
 
 
