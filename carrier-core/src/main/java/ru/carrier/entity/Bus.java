@@ -18,8 +18,13 @@ public class Bus extends AbstractEntityImpl implements Serializable {
     @Column(name = "seats")
     private Integer seats;
 
-    @Column(name = "bus_model")
-    private String busModel;
+    @ManyToOne(fetch = FetchType.LAZY, optional = false, targetEntity = BusModelSpr.class)
+    @JoinColumn(name = "bus_model_id")
+    private BusModelSpr busModelSpr;
+
+    @ManyToOne(fetch = FetchType.LAZY, optional = false, targetEntity = BusBrandSpr.class)
+    @JoinColumn(name = "bus_brand_id")
+    private BusBrandSpr busBrandSpr;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false, targetEntity = Carrier.class)
     @JoinColumn(name = "carrier_man_id")
@@ -41,12 +46,12 @@ public class Bus extends AbstractEntityImpl implements Serializable {
         this.seats = seats;
     }
 
-    public String getBusModel() {
-        return busModel;
+    public BusModelSpr getBusModelSpr() {
+        return busModelSpr;
     }
 
-    public void setBusModel(String busModel) {
-        this.busModel = busModel;
+    public void setBusModelSpr(BusModelSpr busModelSpr) {
+        this.busModelSpr = busModelSpr;
     }
 
     public Carrier getCarrier() {

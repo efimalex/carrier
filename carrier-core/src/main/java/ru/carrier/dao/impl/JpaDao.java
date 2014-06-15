@@ -25,6 +25,7 @@ import static org.hibernate.criterion.Restrictions.*;
  * To change this template use File | Settings | File Templates.
  */
 
+@Repository
 public class JpaDao<T extends AppEntity> implements Dao<T> {
 
     @PersistenceContext(type = PersistenceContextType.EXTENDED)

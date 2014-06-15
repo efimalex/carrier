@@ -12,7 +12,7 @@ import java.util.List;
 /**
  * Created by User on 14.04.2014.
  */
-public interface CarrierManagement {
+public interface CarrierManagement extends Service<Carrier> {
 
     void addBusToCarrier(Long carrierId, BusBean addedBus);
 
@@ -23,8 +23,4 @@ public interface CarrierManagement {
     void addBusRoute(Long carrierId, BusRoute busRoute);
 
     Carrier create(Carrier carrier);
-
-    Carrier find(Long id);
-
-    List<Carrier> findAll();
 }

@@ -9,20 +9,20 @@ public class BusBean {
     private Long id;
     private String stateNumber;
     private Integer seats;
-    private String busModel;
+    //private String busModel;
 
     public BusBean(Long id, String stateNumber, Integer seats, String busModel) {
         this.id = id;
         this.stateNumber = stateNumber;
         this.seats = seats;
-        this.busModel = busModel;
+       // this.busModel = busModel;
     }
 
     public BusBean(Bus bus) {
         this.id = bus.getId();
         this.stateNumber = bus.getStateNumber();
         this.seats = bus.getSeats();
-        this.busModel = bus.getBusModel();
+      //  this.busModel = bus.getBusModel();
     }
 
     public BusBean() {
@@ -44,20 +44,19 @@ public class BusBean {
         this.seats = seats;
     }
 
-    public String getBusModel() {
-        return busModel;
-    }
-
-    public void setBusModel(String busModel) {
-        this.busModel = busModel;
-    }
+//    public String getBusModel() {
+//        return busModel;
+//    }
+//
+//    public void setBusModel(String busModel) {
+//        this.busModel = busModel;
+//    }
 
     @Override
     public String toString() {
         return "BusBean{" +
                 "stateNumber='" + stateNumber + '\'' +
                 ", seats=" + seats +
-                ", busModel='" + busModel + '\'' +
                 '}';
     }
 }

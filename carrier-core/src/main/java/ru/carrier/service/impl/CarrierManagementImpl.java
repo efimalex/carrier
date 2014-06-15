@@ -6,6 +6,7 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ru.carrier.dao.CarrierDao;
+import ru.carrier.dao.Dao;
 import ru.carrier.dto.BusBean;
 import ru.carrier.dto.CarrierBusesBean;
 import ru.carrier.entity.Bus;
@@ -20,15 +21,10 @@ import java.util.List;
  * Created by User on 14.04.2014.
  */
 @Service("carrierManagement")
-public class CarrierManagementImpl implements CarrierManagement {
+public class CarrierManagementImpl extends ServiceImpl<Carrier> implements CarrierManagement {
 
     @Autowired
     private CarrierDao carrierDao;
-
-    @Override
-    public Carrier find(Long id) {
-        return carrierDao.findById(Carrier.class, id);
-    }
 
     @Override
     @Transactional
@@ -37,14 +33,14 @@ public class CarrierManagementImpl implements CarrierManagement {
         Bus bus = getBus(addedBus);
         bus.setCarrier(carrier);
         carrier.addBus(bus);
-        carrierDao.saveOrUpdate(carrier);
+        getDao().saveOrUpdate(carrier);
     }
 
     private Bus getBus(BusBean addedBus) {
         Bus bus = new Bus();
         bus.setSeats(addedBus.getSeats());
         bus.setStateNumber(addedBus.getStateNumber());
-        bus.setBusModel(addedBus.getBusModel());
+        //bus.setBusModel(addedBus.getBusModel());
         return bus;
     }
 
@@ -76,22 +72,21 @@ public class CarrierManagementImpl implements CarrierManagement {
     public void addBusRoute(Long carrierId, BusRoute busRoute) {
         Carrier carrier = getCarrier(carrierId);
         carrier.addBusRoute(busRoute);
-        carrierDao.saveOrUpdate(carrier);
+        getDao().saveOrUpdate(carrier);
     }
 
     @Override
     @Transactional
     public Carrier create(Carrier carrier){
-        return carrierDao.saveOrUpdate(carrier);
-    }
-
-    @Override
-    @Transactional
-    public List<Carrier> findAll() {
-        return carrierDao.findAll();
+        return getDao().saveOrUpdate(carrier);
     }
 
     private Carrier getCarrier(Long carrierId) {
-        return carrierDao.findById(Carrier.class, carrierId);
+        return getDao().findById(Carrier.class, carrierId);
+    }
+
+    @Override
+    protected Dao<Carrier> getDao() {
+        return carrierDao;
     }
 }

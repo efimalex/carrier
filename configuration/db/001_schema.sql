@@ -28,17 +28,48 @@ WITH (
 ALTER TABLE carrier_man
   OWNER TO dbwriter;
 
+CREATE TABLE bus_model_spr
+(
+  id bigint NOT NULL,
+  name character varying(255) NOT NULL,
+  bus_brand_id BIGINT NOT NULL,
+  CONSTRAINT bus_model_spr_pkey PRIMARY KEY (id)
+)
+WITH (
+  OIDS=FALSE
+);
+ALTER TABLE bus_model_spr
+  OWNER TO dbwriter;
+
+CREATE TABLE bus_brand_spr
+(
+  id bigint NOT NULL,
+  name character varying(255) NOT NULL,
+  CONSTRAINT bus_brand_spr_pkey PRIMARY KEY (id)
+)
+WITH (
+  OIDS=FALSE
+);
+ALTER TABLE bus_brand_spr
+  OWNER TO dbwriter;
 
 CREATE TABLE bus
 (
   id bigint NOT NULL,
   state_number CHARACTER VARYING(10) NOT NULL,
   seats INT NOT NULL,
-  bus_model CHARACTER VARYING(64) NOT NULL,
+  bus_model_id BIGINT NOT NULL,
+  bus_brand_id BIGINT NOT NULL,
   carrier_man_id BIGINT NOT NULL,
   CONSTRAINT bus_pkey PRIMARY KEY (id),
   CONSTRAINT carrier_man_id_fk FOREIGN KEY (carrier_man_id)
       REFERENCES carrier_man (id) MATCH SIMPLE
+      ON UPDATE NO ACTION ON DELETE NO ACTION,
+  CONSTRAINT bus_model_id_fk FOREIGN KEY (bus_model_id)
+      REFERENCES bus_model_spr (id) MATCH SIMPLE
+      ON UPDATE NO ACTION ON DELETE NO ACTION,
+  CONSTRAINT bus_brand_id_fk FOREIGN KEY (bus_brand_id)
+      REFERENCES bus_brand_spr (id) MATCH SIMPLE
       ON UPDATE NO ACTION ON DELETE NO ACTION
 )
 WITH (
@@ -86,6 +117,7 @@ ALTER TABLE bus_station
 ALTER TABLE bus_route ADD CONSTRAINT destination_station_id_fk FOREIGN KEY (destination_station_id) REFERENCES bus_station (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION;
 ALTER TABLE bus_route ADD CONSTRAINT dispatch_station_id_fk FOREIGN KEY (dispatch_station_id) REFERENCES bus_station (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION;
 ALTER TABLE bus_station ADD CONSTRAINT bus_route_id_fk FOREIGN KEY (bus_route_id) REFERENCES bus_route (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION;
+ALTER TABLE bus_model_spr ADD CONSTRAINT bus_brand_id_fk FOREIGN KEY (bus_brand_id) REFERENCES bus_brand_spr (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION;
 
 CREATE TABLE timetable
 (

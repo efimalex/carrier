@@ -17,7 +17,7 @@ import ru.xpoft.vaadin.DiscoveryNavigator;
 
 @Component
 @Scope("prototype")
-@Theme("dashboard")
+//@Theme("dashboard")
 //@Theme("dashboard")
 
 

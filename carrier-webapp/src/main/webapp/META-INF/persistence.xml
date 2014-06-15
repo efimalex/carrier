@@ -8,5 +8,7 @@
         <class>ru.carrier.entity.BusStationPriceHistory</class>
         <class>ru.carrier.entity.Carrier</class>
         <class>ru.carrier.entity.Timetable</class>
+        <class>ru.carrier.entity.BusBrandSpr</class>
+        <class>ru.carrier.entity.BusModelSpr</class>
     </persistence-unit>
 </persistence>

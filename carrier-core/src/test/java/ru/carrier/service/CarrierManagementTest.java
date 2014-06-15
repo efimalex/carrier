@@ -28,17 +28,17 @@ public class CarrierManagementTest {
         carrier.setDescription("Description");
 
         BusBean bus = new BusBean();
-        bus.setBusModel("Gasel");
+        //bus.setBusModel("Gasel");
         bus.setSeats(13);
         bus.setStateNumber("А 555 АА");
 
         Carrier firstSavedCarrier = carrierManagement.create(carrier);
         System.out.println("Carrier is create successful");
-        Carrier loadedCarrier = carrierManagement.find(firstSavedCarrier.getId());
+        Carrier loadedCarrier = carrierManagement.find(Carrier.class, firstSavedCarrier.getId());
         System.out.println(loadedCarrier);
         carrierManagement.addBusToCarrier(loadedCarrier.getId(), bus);
         System.out.println("Carrier after added bus");
-        System.out.println(carrierManagement.find(carrierManagement.create(loadedCarrier).getId()));
+        System.out.println(carrierManagement.find(Carrier.class, carrierManagement.create(loadedCarrier).getId()));
 
     }
 }
