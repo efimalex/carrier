@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
+        "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+
+<tiles-definitions>
+    <definition name="startPage.view" extends="defaultTemplate">
+        <put-attribute name="body" value="/WEB-INF/jsp/simple/simole_body.jsp"/>
+    </definition>
+
+    <!--Configure carrier buses view-->
+    <definition name="carrierBuses.menu" template="/WEB-INF/jsp/carrier_place/carrier_bases.jsp">
+        <put-attribute name="busMenu" value="/WEB-INF/jsp/common/menu/buses-menu.jsp"/>
+    </definition>
+
+    <definition name="carrierBuses.editForm" template="/WEB-INF/jsp/carrier_place/carrier_bases.jsp">
+        <put-attribute name="busEditForm" value="/WEB-INF/jsp/common/forms/bus-edit-form.jsp"/>
+    </definition>
+
+    <definition name="carrierBuses.list" template="/WEB-INF/jsp/carrier_place/carrier_bases.jsp">
+        <put-attribute name="listBusesForm" value="/WEB-INF/jsp/common/forms/list-buses-form.jsp"/>
+    </definition>
+
+    <definition name="carrierBuses.body" template="/WEB-INF/jsp/carrier_place/carrier_bases.jsp">
+       <put-attribute name="body" expression="${busesForm}"/>
+    </definition>
+
+    <definition name="carrierBuses.view" extends="defaultTemplate">
+        <put-attribute name="body" value="carrierBuses.menu"/>
+    </definition>
+
+
+</tiles-definitions>
