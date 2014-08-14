@@ -4,30 +4,38 @@
         "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
 
 <tiles-definitions>
-    <definition name="startPage.view" extends="defaultTemplate">
-        <put-attribute name="body" value="/WEB-INF/jsp/simple/simole_body.jsp"/>
+
+    <!--List buses-->
+    <definition name="carrierListBus.view" extends="defaultTemplate">
+        <put-attribute name="content" value="carrierListBus.body"/>
     </definition>
 
-    <!--Configure carrier buses view-->
-    <definition name="carrierBuses.menu" template="/WEB-INF/jsp/carrier_place/carrier_bases.jsp">
+    <definition name="carrierListBus.body" template="/WEB-INF/jsp/carrier_place/carrier_bases.jsp">
         <put-attribute name="busMenu" value="/WEB-INF/jsp/common/menu/buses-menu.jsp"/>
+        <put-attribute name="busBody">
+            <definition template="/WEB-INF/jsp/common/forms/list-buses-form.jsp">
+                <put-attribute name="editBusFooter" value="/WEB-INF/jsp/common/component/okCancelFooter.jsp"/>
+            </definition>
+        </put-attribute>
     </definition>
 
-    <definition name="carrierBuses.editForm" template="/WEB-INF/jsp/carrier_place/carrier_bases.jsp">
-        <put-attribute name="busEditForm" value="/WEB-INF/jsp/common/forms/bus-edit-form.jsp"/>
+    <!--Edit bus-->
+    <definition name="busEdit.view" extends="defaultTemplate">
+        <put-attribute name="content" value="busEdit.body"/>
     </definition>
 
-    <definition name="carrierBuses.list" template="/WEB-INF/jsp/carrier_place/carrier_bases.jsp">
-        <put-attribute name="listBusesForm" value="/WEB-INF/jsp/common/forms/list-buses-form.jsp"/>
+    <!--Create bus-->
+    <definition name="busCreate.view" extends="defaultTemplate">
+        <put-attribute name="content" value="busEdit.body"/>
     </definition>
 
-    <definition name="carrierBuses.body" template="/WEB-INF/jsp/carrier_place/carrier_bases.jsp">
-       <put-attribute name="body" expression="${busesForm}"/>
+    <definition name="busEdit.body" template="/WEB-INF/jsp/carrier_place/carrier_bases.jsp">
+        <put-attribute name="busMenu" value="/WEB-INF/jsp/common/menu/buses-menu.jsp"/>
+        <put-attribute name="busBody">
+            <definition template="/WEB-INF/jsp/common/forms/bus-modify-form.jsp">
+                <put-attribute name="editBusFooter" value="/WEB-INF/jsp/common/component/okCancelFooter.jsp"/>
+            </definition>
+        </put-attribute>
     </definition>
-
-    <definition name="carrierBuses.view" extends="defaultTemplate">
-        <put-attribute name="body" value="carrierBuses.menu"/>
-    </definition>
-
 
 </tiles-definitions>

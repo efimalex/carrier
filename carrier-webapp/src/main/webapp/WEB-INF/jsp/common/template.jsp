@@ -6,28 +6,22 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=9;chrome=1"/>
+    <link href="<c:url value="/resources/bootstrap/css/bootstrap.css"/>" media="screen" rel="stylesheet"
+          type="text/css"/>
+    <link rel="stylesheet" href="<c:url value="/resources/css/style.css?20140716"/>" type="text/css"/>
 
+    <script type="text/javascript" src="<c:url value='/resources/js/jquery/jquery-1.11.1.min.js'/>"></script>
+    <script type="text/javascript" src="<c:url value='/resources/js/custom/scripts.js'/>"></script>
+    <script type="text/javascript" src="<c:url value='/resources/bootstrap/js/bootstrap.js'/>"></script>
     <title><tiles:insertAttribute name="title"/></title>
-
 </head>
 <body>
-
 <div id="wrapper">
     <tiles:insertAttribute name="header"/>
-    <div id="content">
-        <div class="content_bot">
-            <div class="con_top">
-                <div class="con_bot">
-                    <div class="container clearfix">
-                        <tiles:insertAttribute name="body"/>
-
-                    </div>
-                </div>
-            </div>
-        </div>
+    <div id="cont" class="center-block">
+        <tiles:insertAttribute name="content"/>
     </div>
     <tiles:insertAttribute name="footer"/>
 </div>
-
 </body>
 </html>
